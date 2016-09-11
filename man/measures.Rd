@@ -8,6 +8,8 @@
 \alias{timepredict}
 \alias{timeboth}
 \alias{sse}
+\alias{mase}
+\alias{measureMASE}
 \alias{measureSSE}
 \alias{mse}
 \alias{measureMSE}
@@ -123,6 +125,7 @@
 \alias{G1}
 \alias{G2}
 \alias{silhouette}
+\alias{multivar.mase}
 \title{Performance measures.}
 \format{none}
 \usage{
@@ -135,6 +138,10 @@ timepredict
 timeboth
 
 sse
+
+none
+
+measureMASE(truth, response, target, frequency)
 
 measureSSE(truth, response)
 
@@ -365,6 +372,8 @@ G1
 G2
 
 silhouette
+
+none
 }
 \arguments{
 \item{truth}{[\code{factor}]\cr
@@ -372,6 +381,11 @@ Vector of the true class.}
 
 \item{response}{[\code{factor}]\cr
 Vector of the predicted class.}
+
+\item{target}{[character(1)]
+The target variable from the training data}
+
+\item{frequency}{The seasonality of the data}
 
 \item{probabilities}{[\code{numeric} | \code{matrix}]\cr
 a) For purely binary classification measures: The predicted probabilities for the positive class as a numeric vector.
