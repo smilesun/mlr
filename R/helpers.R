@@ -60,7 +60,7 @@ propVectorToMatrix = function(p, levs) {
 #' @return [\code{character}].
 #' @export
 listTaskTypes = function() {
-  c("classif", "regr", "surv", "costsens", "cluster", "multilabel")
+  c("classif", "regr", "surv", "costsens", "cluster", "multilabel", "fcregr")
 }
 
 # Maybe move to BBmisc at some point
@@ -98,3 +98,6 @@ suppressWarning = function(expr, str) {
 hasEmptyLevels = function(x) {
   !all(levels(x) %chin% as.character(unique(x)))
 }
+
+# Check if something is POSIXt, added so we don't need to import lubridate
+is.POSIXt = function(x) inherits(x, "POSIXt")

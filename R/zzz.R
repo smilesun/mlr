@@ -26,9 +26,10 @@ mlr$learner.properties = list(
   regr       = c("numerics", "factors", "ordered", "missings", "weights", "se", "featimp", "oobpreds"),
   cluster    = c("numerics", "factors", "ordered", "missings", "weights", "prob"),
   surv       = c("numerics", "factors", "ordered", "missings", "weights", "prob", "lcens", "rcens", "icens", "featimp", "oobpreds"),
-  costsens   = c("numerics", "factors", "ordered", "missings", "weights", "prob", "twoclass", "multiclass")
+  costsens   = c("numerics", "factors", "ordered", "missings", "weights", "prob", "twoclass", "multiclass"),
+  fcregr     = c("numerics", "quantile", "weights")
 )
 mlr$learner.properties$any = unique(unlist(mlr$learner.properties))
 
 ### Measure properties
-mlr$measure.properties = c("classif", "classif.multi", "multilabel", "regr", "surv", "cluster", "costsens", "req.pred", "req.truth", "req.task", "req.feats", "req.model", "req.prob")
+mlr$measure.properties = c("classif", "classif.multi", "multilabel", "regr", "surv", "cluster", "costsens", "fcregr", "req.pred", "req.truth", "req.task", "req.feats", "req.model", "req.prob")
