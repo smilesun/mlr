@@ -13,7 +13,7 @@ makeRLearner.fdaclassif.knn = function() {
       makeLogicalLearnerParam(id = "draw", default = FALSE, tunable = FALSE)
     ),
     par.vals = list(draw = FALSE),
-    properties = c("twoclass", "multiclass", "numerics", "weights"),
+    properties = c("twoclass", "multiclass", "numerics", "weights", "prob"),
     name = "Knn on FDA",
     short.name = "knnFDA",
     note = "Draw parameter is set to FALSE as default."
@@ -36,7 +36,11 @@ trainLearner.fdaclassif.knn = function(.learner, .task, .subset, .weights = NULL
 #' @export
 predictLearner.fdaclassif.knn = function(.learner, .model, .newdata, ...) {
   m = .model$learner.model
-  nd.fdclass = fda.usc::fdata(mdata = .newdata)# transform the data into fda.usc:fdata class type.
-  class.pred = predict(m, nd.fdclass, ...)
-  return(class.pred)
+  nd.fdclass = fda.usc::fdata(mdata = .newdata) # transform the data into fda.usc:fdata class type.
+  type = ifelse(.learner$predict.type == "prob", "prob", "class")
+  if (type == "probs") {
+    predict(.model$learner.model, nd.fdclass, type = type)$prob.group
+  } else {
+    predict(.model$learner.model, nd.fdclass, type = type)
+  }
 }
